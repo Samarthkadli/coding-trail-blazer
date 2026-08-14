@@ -69,7 +69,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo<Ctx>(() => {
-    const current = [...levels].reverse().find((l) => state.xp >= l.min) ?? levels[0];
+    const current = ([...levels].reverse().find((l) => state.xp >= l.min) ?? levels[0])!;
     const next = levels.find((l) => l.min > current.min) ?? null;
     const span = next ? next.min - current.min : 1;
     const levelProgress = next ? Math.min(100, Math.round(((state.xp - current.min) / span) * 100)) : 100;
