@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdventureRouteImport } from './routes/adventure'
+import { Route as AiToolsRouteImport } from './routes/ai-tools'
+import { Route as CodingRouteImport } from './routes/coding'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdventureRoute = AdventureRouteImport.update({
+  id: '/adventure',
+  path: '/adventure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiToolsRoute = AiToolsRouteImport.update({
+  id: '/ai-tools',
+  path: '/ai-tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CodingRoute = CodingRouteImport.update({
+  id: '/coding',
+  path: '/coding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/adventure': typeof AdventureRoute
+  '/ai-tools': typeof AiToolsRoute
+  '/coding': typeof CodingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/adventure': typeof AdventureRoute
+  '/ai-tools': typeof AiToolsRoute
+  '/coding': typeof CodingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/adventure': typeof AdventureRoute
+  '/ai-tools': typeof AiToolsRoute
+  '/coding': typeof CodingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/adventure' | '/ai-tools' | '/coding'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/adventure' | '/ai-tools' | '/coding'
+  id: '__root__' | '/' | '/adventure' | '/ai-tools' | '/coding'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdventureRoute: typeof AdventureRoute
+  AiToolsRoute: typeof AiToolsRoute
+  CodingRoute: typeof CodingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/adventure': {
+      id: '/adventure'
+      path: '/adventure'
+      fullPath: '/adventure'
+      preLoaderRoute: typeof AdventureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-tools': {
+      id: '/ai-tools'
+      path: '/ai-tools'
+      fullPath: '/ai-tools'
+      preLoaderRoute: typeof AiToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coding': {
+      id: '/coding'
+      path: '/coding'
+      fullPath: '/coding'
+      preLoaderRoute: typeof CodingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdventureRoute: AdventureRoute,
+  AiToolsRoute: AiToolsRoute,
+  CodingRoute: CodingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
