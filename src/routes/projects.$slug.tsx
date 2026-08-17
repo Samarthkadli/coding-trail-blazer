@@ -72,7 +72,7 @@ function ProjectDetail() {
   const [typed, setTyped] = useState("");
   const timers = useRef<number[]>([]);
 
-  const file = guide.files[active];
+  const file = guide.files[active] ?? guide.files[0]!;
   const preview = useMemo(() => buildPreview(guide.files), [guide.files]);
   const consoleText = guide.output ?? "";
 
