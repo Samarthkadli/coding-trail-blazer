@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects } from "@/data/content";
+import { slugify } from "@/data/project-code";
 import { Card, Chip, CTAButton, Reveal, Section, XpTag } from "@/components/site";
 import { useProgress } from "@/lib/progress";
 import { cn } from "@/lib/utils";
@@ -21,7 +22,7 @@ const cats = ["All", "Beginner", "Intermediate", "AI Projects"] as const;
 
 function ProjectsPage() {
   const [cat, setCat] = useState<(typeof cats)[number]>("All");
-  const { complete, isDone, hydrated } = useProgress();
+  const { isDone, hydrated } = useProgress();
   const list = projects.filter((p) => cat === "All" || p.category === cat);
 
   return (
@@ -64,13 +65,18 @@ function ProjectsPage() {
                 </div>
                 <p className="mt-3 text-sm"><span className="font-black">You'll learn: </span>{p.skills.join(", ")}</p>
                 <div className="mt-auto pt-5">
-                  <CTAButton
-                    onClick={() => complete(id, p.xp, "project-builder")}
-                    variant={started ? "ghost" : "primary"}
-                    className="px-5 py-2.5"
+                  <Link
+                    to="/projects/$slug"
+                    params={{ slug: slugify(p.name) }}
+                    className={cn(
+                      "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-black transition-all duration-300 active:scale-95",
+                      started
+                        ? "glass text-foreground hover:-translate-y-0.5 hover:shadow-lift"
+                        : "bg-gradient-primary text-primary-foreground shadow-glow hover:brightness-110 hover:-translate-y-0.5",
+                    )}
                   >
-                    {started ? "Started ✓" : "Start Project →"}
-                  </CTAButton>
+                    {started ? "Completed ✓ · View code" : "Start Project →"}
+                  </Link>
                 </div>
               </Card>
             </Reveal>
