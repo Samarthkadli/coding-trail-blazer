@@ -20,6 +20,9 @@ export function AdventureMap({ compact = false }: { compact?: boolean }) {
           const done = hydrated && isDone(w.id);
           const prevDone = i === 0 || (hydrated && isDone(worlds[i - 1]!.id));
           const locked = !done && !prevDone;
+          const lab = worldLabs[w.id];
+          const isOpen = open === w.id;
+
           return (
             <Reveal key={w.id} delay={i * 60}>
               <article
