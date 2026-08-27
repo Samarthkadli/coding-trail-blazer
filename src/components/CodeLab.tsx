@@ -18,7 +18,7 @@ export function buildPreview(files: CodeFile[]) {
 export type CodeLabProps = {
   files: CodeFile[];
   runnable: boolean;
-  output?: string;
+  output?: string | undefined;
   path?: string;
   previewTitle?: string;
   className?: string;

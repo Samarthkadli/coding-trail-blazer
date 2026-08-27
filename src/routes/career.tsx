@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { careerTracks } from "@/data/content";
+import { careerLabs } from "@/data/mini-labs";
+import { slugify } from "@/data/project-code";
 import { Card, CTAButton, Reveal, Section } from "@/components/site";
+import { CodeLab } from "@/components/CodeLab";
 
 export const Route = createFileRoute("/career")({
   head: () => ({
@@ -15,24 +19,58 @@ export const Route = createFileRoute("/career")({
 });
 
 function CareerPage() {
+  const [open, setOpen] = useState<string | null>(null);
+
   return (
     <>
       <Section
         eyebrow="Final destination"
         title="Turn Skills Into Opportunities 🚀"
-        subtitle="You've explored, you've built. Now make it visible to the people who hire."
+        subtitle="You've explored, you've built. Open any track to see the code, then press ▶ Run."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {careerTracks.map((c, i) => (
-            <Reveal key={c.title} delay={i * 40}>
-              <Card className="h-full">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-aqua text-2xl shadow-glow">{c.emoji}</div>
-                <p className="mt-3 font-display text-xl">{c.title}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{c.desc}</p>
-              </Card>
-            </Reveal>
-          ))}
+          {careerTracks.map((c, i) => {
+            const key = slugify(c.title);
+            const lab = careerLabs[key];
+            const isOpen = open === key;
+            return (
+              <Reveal key={c.title} delay={i * 40}>
+                <Card className="flex h-full flex-col">
+                  <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-aqua text-2xl shadow-glow">{c.emoji}</div>
+                  <p className="mt-3 font-display text-xl">{c.title}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{c.desc}</p>
+                  {lab && (
+                    <div className="mt-auto pt-5">
+                      <CTAButton
+                        onClick={() => setOpen(isOpen ? null : key)}
+                        variant={isOpen ? "ghost" : "primary"}
+                        className="px-5 py-2.5"
+                      >
+                        {isOpen ? "Hide code" : "Start track →"}
+                      </CTAButton>
+                    </div>
+                  )}
+                </Card>
+              </Reveal>
+            );
+          })}
         </div>
+
+        {open && careerLabs[open] && (
+          <div className="mt-6">
+            <p className="mb-2 text-xs font-black tracking-widest uppercase text-muted-foreground">
+              {careerLabs[open]!.title}
+            </p>
+            <CodeLab
+              key={open}
+              files={careerLabs[open]!.files}
+              runnable={careerLabs[open]!.runnable}
+              output={careerLabs[open]!.output}
+              path={`career/${open}`}
+              previewTitle={`${careerLabs[open]!.title} preview`}
+            />
+          </div>
+        )}
       </Section>
 
       <section className="mx-auto w-[min(1180px,92vw)] pb-20">

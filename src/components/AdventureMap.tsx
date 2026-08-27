@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Lock, Check, Sparkles } from "lucide-react";
 import { worlds } from "@/data/content";
+import { worldLabs } from "@/data/mini-labs";
 import { useProgress } from "@/lib/progress";
 import { Reveal, Chip, XpTag, CTAButton } from "@/components/site";
+import { CodeLab } from "@/components/CodeLab";
 import { cn } from "@/lib/utils";
 
 export function AdventureMap({ compact = false }: { compact?: boolean }) {
   const { isDone, complete, hydrated } = useProgress();
+  const [open, setOpen] = useState<string | null>(null);
+
 
   return (
     <div className="relative">
@@ -15,6 +20,9 @@ export function AdventureMap({ compact = false }: { compact?: boolean }) {
           const done = hydrated && isDone(w.id);
           const prevDone = i === 0 || (hydrated && isDone(worlds[i - 1]!.id));
           const locked = !done && !prevDone;
+          const lab = worldLabs[w.id];
+          const isOpen = open === w.id;
+
           return (
             <Reveal key={w.id} delay={i * 60}>
               <article
@@ -73,19 +81,42 @@ export function AdventureMap({ compact = false }: { compact?: boolean }) {
                   </ul>
                 )}
 
-                <div className="mt-5">
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {!compact && lab && !locked && (
+                    <CTAButton
+                      onClick={() => setOpen(isOpen ? null : w.id)}
+                      variant={isOpen ? "ghost" : "primary"}
+                      className="px-5 py-2.5"
+                    >
+                      {isOpen ? "Hide code" : "Start world →"}
+                    </CTAButton>
+                  )}
                   {done ? (
-                    <span className="text-sm font-bold text-success-foreground">Checkpoint cleared 🎉</span>
+                    <span className="self-center text-sm font-bold text-success-foreground">Checkpoint cleared 🎉</span>
                   ) : (
                     <CTAButton
                       onClick={() => !locked && complete(w.id, w.xp)}
-                      variant={locked ? "ghost" : "primary"}
+                      variant={locked || (lab && !compact) ? "ghost" : "primary"}
                       className={cn("px-5 py-2.5", locked && "cursor-not-allowed opacity-60")}
                     >
                       {locked ? "Finish the previous world first" : `Complete ${w.name} →`}
                     </CTAButton>
                   )}
                 </div>
+
+                {!compact && lab && isOpen && !locked && (
+                  <div className="mt-5">
+                    <p className="mb-2 text-xs font-black tracking-widest uppercase text-muted-foreground">{lab.title}</p>
+                    <CodeLab
+                      files={lab.files}
+                      runnable={lab.runnable}
+                      output={lab.output}
+                      path={`worlds/${w.id}`}
+                      previewTitle={`${w.name} preview`}
+                    />
+                  </div>
+                )}
+
               </article>
             </Reveal>
           );
