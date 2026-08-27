@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Lock, Check, Sparkles } from "lucide-react";
 import { worlds } from "@/data/content";
+import { worldLabs } from "@/data/mini-labs";
 import { useProgress } from "@/lib/progress";
 import { Reveal, Chip, XpTag, CTAButton } from "@/components/site";
+import { CodeLab } from "@/components/CodeLab";
 import { cn } from "@/lib/utils";
 
 export function AdventureMap({ compact = false }: { compact?: boolean }) {
   const { isDone, complete, hydrated } = useProgress();
+  const [open, setOpen] = useState<string | null>(null);
+
 
   return (
     <div className="relative">
