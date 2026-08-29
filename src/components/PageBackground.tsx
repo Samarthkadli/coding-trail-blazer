@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
 import aiBg from "@/assets/ai-bg.jpg";
@@ -22,28 +23,42 @@ const backgrounds: { match: string; src: string }[] = [
   { match: "/dashboard", src: bgDashboard },
 ];
 
+const allSources = [aiBg, ...backgrounds.map((b) => b.src)];
+
 export function PageBackground() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const current = backgrounds.find((b) => pathname.startsWith(b.match));
-  const src = current?.src ?? aiBg;
+  const activeSrc = current?.src ?? aiBg;
+
+  // Preload every backdrop once so route changes never flash blank.
+  useEffect(() => {
+    for (const src of allSources) {
+      const img = new Image();
+      img.src = src;
+    }
+  }, []);
 
   return (
     <>
-      <div
-        key={src}
-        aria-hidden
-        className="animate-rise pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${src})` }}
-      />
-      {/* Light veil — keeps the artwork clearly visible while preserving contrast */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/45" />
-      {/* Soft vignette so edges & text zones stay readable */}
+      {/* Stacked layers cross-fade — the previous image stays until the next is visible */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        {allSources.map((src) => (
+          <div
+            key={src}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-out"
+            style={{ backgroundImage: `url(${src})`, opacity: src === activeSrc ? 1 : 0 }}
+          />
+        ))}
+      </div>
+      {/* Readability veil — strong enough for text, light enough to show the artwork */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/60" />
+      {/* Vignette: deeper tint behind content zones, clearer artwork at edges */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--background) 55%, transparent) 0%, transparent 30%, transparent 70%, color-mix(in oklab, var(--background) 70%, transparent) 100%)",
+            "radial-gradient(ellipse 90% 70% at 50% 38%, color-mix(in oklab, var(--background) 55%, transparent) 0%, transparent 70%), linear-gradient(180deg, color-mix(in oklab, var(--background) 70%, transparent) 0%, transparent 25%, transparent 75%, color-mix(in oklab, var(--background) 75%, transparent) 100%)",
         }}
       />
     </>
