@@ -138,12 +138,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ProgressProvider>
-        <div
-          aria-hidden
-          className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${aiBg})` }}
-        />
-        <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/82 backdrop-blur-[2px]" />
+        <PageBackground />
         <div className="relative flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">
