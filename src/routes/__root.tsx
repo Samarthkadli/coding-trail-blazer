@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import aiBg from "@/assets/ai-bg.jpg";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/site";
@@ -137,7 +138,13 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ProgressProvider>
-        <div className="flex min-h-screen flex-col">
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${aiBg})` }}
+        />
+        <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/82 backdrop-blur-[2px]" />
+        <div className="relative flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
