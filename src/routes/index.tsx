@@ -33,7 +33,7 @@ function Home() {
         <div className="mx-auto grid w-[min(1180px,92vw)] items-center gap-10 py-12 sm:py-20 lg:grid-cols-2">
           <div className="animate-rise">
             <Chip tone="orange">🎮 Learning, but make it an adventure</Chip>
-            <h1 className="mt-4 text-4xl leading-[1.1] sm:text-6xl">
+            <h1 className="text-halo mt-4 text-4xl leading-[1.1] sm:text-6xl">
               Your Tech Adventure <span className="gradient-text">Starts Here</span> 🚀
             </h1>
             <p className="glass mt-5 max-w-xl rounded-2xl px-5 py-4 text-lg font-semibold text-foreground">
