@@ -61,8 +61,8 @@ export function Section({
               {eyebrow}
             </span>
           )}
-          <h2 className="text-3xl leading-tight sm:text-4xl">{title}</h2>
-          {subtitle && <p className="mt-3 text-base text-muted-foreground sm:text-lg">{subtitle}</p>}
+          <h2 className="text-halo text-3xl leading-tight sm:text-4xl">{title}</h2>
+          {subtitle && <p className="text-halo mt-3 text-base font-semibold text-muted-foreground sm:text-lg">{subtitle}</p>}
         </div>
       </Reveal>
       {children}

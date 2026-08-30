@@ -50,15 +50,15 @@ export function PageBackground() {
           />
         ))}
       </div>
-      {/* Readability veil — strong enough for text, light enough to show the artwork */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/60" />
-      {/* Vignette: deeper tint behind content zones, clearer artwork at edges */}
+      {/* Very light veil — artwork stays clearly visible */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/25" />
+      {/* Gentle vignette only at top (navbar) and bottom (footer) */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 90% 70% at 50% 38%, color-mix(in oklab, var(--background) 55%, transparent) 0%, transparent 70%), linear-gradient(180deg, color-mix(in oklab, var(--background) 70%, transparent) 0%, transparent 25%, transparent 75%, color-mix(in oklab, var(--background) 75%, transparent) 100%)",
+            "linear-gradient(180deg, color-mix(in oklab, var(--background) 55%, transparent) 0%, transparent 18%, transparent 82%, color-mix(in oklab, var(--background) 60%, transparent) 100%)",
         }}
       />
     </>
