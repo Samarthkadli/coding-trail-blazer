@@ -45,20 +45,20 @@ export function PageBackground() {
         {allSources.map((src) => (
           <div
             key={src}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-out"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-slow-zoom transition-opacity duration-700 ease-out"
             style={{ backgroundImage: `url(${src})`, opacity: src === activeSrc ? 1 : 0 }}
           />
         ))}
       </div>
-      {/* Very light veil — artwork stays clearly visible */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/25" />
+      {/* Barely-there veil — artwork stays vivid and eye-catching */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-background/10" />
       {/* Gentle vignette only at top (navbar) and bottom (footer) */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--background) 55%, transparent) 0%, transparent 18%, transparent 82%, color-mix(in oklab, var(--background) 60%, transparent) 100%)",
+            "linear-gradient(180deg, color-mix(in oklab, var(--background) 40%, transparent) 0%, transparent 12%, transparent 88%, color-mix(in oklab, var(--background) 45%, transparent) 100%)",
         }}
       />
     </>
