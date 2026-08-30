@@ -36,7 +36,7 @@ function Home() {
             <h1 className="mt-4 text-4xl leading-[1.1] sm:text-6xl">
               Your Tech Adventure <span className="gradient-text">Starts Here</span> 🚀
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-muted-foreground">
+            <p className="text-halo mt-5 max-w-xl text-lg font-semibold text-muted-foreground">
               AI, coding, GitHub, tools, projects... Technology can feel overwhelming. We'll help you discover it one
               step at a time.
             </p>
