@@ -27,10 +27,7 @@ function CodingPage() {
           <Reveal key={p.name} delay={i * 40}>
             <Card className="flex h-full flex-col">
               <div className="flex items-start justify-between gap-2">
-                <div className="flex flex-col gap-2">
-                  <BrandLogo name={p.name} emoji={p.emoji} />
-                  <p className="font-display text-2xl">{p.name}</p>
-                </div>
+                <BrandLogo name={p.name} emoji={p.emoji} className="h-12 max-w-[160px]" />
                 <Chip tone={p.difficulty === "Beginner" ? "success" : p.difficulty === "Easy" ? "cyan" : "orange"}>
                   {p.difficulty}
                 </Chip>

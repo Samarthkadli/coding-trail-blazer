@@ -32,10 +32,7 @@ function AiToolsPage() {
             <Reveal key={t.name} delay={i * 40}>
               <Card className="flex h-full flex-col">
                 <div className="flex items-start justify-between gap-2">
-                  <div className="flex flex-col gap-2">
-                    <BrandLogo name={t.name} emoji={t.emoji} />
-                    <p className="font-display text-2xl">{t.name}</p>
-                  </div>
+                  <BrandLogo name={t.name} emoji={t.emoji} className="h-12 max-w-[160px]" />
                   <Chip tone={t.difficulty === "Beginner" ? "success" : t.difficulty === "Medium" ? "orange" : "cyan"}>
                     {t.difficulty}
                   </Chip>
