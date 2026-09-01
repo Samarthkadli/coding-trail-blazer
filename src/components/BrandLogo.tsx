@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-import chatgpt from "@/assets/logos/chatgpt.webp.asset.json";
-import claude from "@/assets/logos/claude.jpg.asset.json";
-import gemini from "@/assets/logos/gemini.jpeg.asset.json";
-import copilot from "@/assets/logos/copilot.jpeg.asset.json";
-import cursor from "@/assets/logos/cursor.png.asset.json";
-import replit from "@/assets/logos/replit.png.asset.json";
-import perplexity from "@/assets/logos/perplexity.jpeg.asset.json";
-import notebooklm from "@/assets/logos/notebooklm.png.asset.json";
+import chatgpt from "@/assets/logos/chatgpt-v2.png.asset.json";
+import claude from "@/assets/logos/claude-v2.png.asset.json";
+import gemini from "@/assets/logos/gemini-v2.png.asset.json";
+import copilot from "@/assets/logos/copilot-v2.png.asset.json";
+import cursor from "@/assets/logos/cursor-v2.png.asset.json";
+import replit from "@/assets/logos/replit-v2.png.asset.json";
+import perplexity from "@/assets/logos/perplexity-v2.png.asset.json";
+import notebooklm from "@/assets/logos/notebooklm-v2.png.asset.json";
 import canva from "@/assets/logos/canva.jpeg.asset.json";
-import github from "@/assets/logos/github.png.asset.json";
+import github from "@/assets/logos/github-v2.png.asset.json";
 
 const LOGOS: Record<string, string> = {
   "ChatGPT": chatgpt.url,
@@ -25,6 +25,7 @@ const LOGOS: Record<string, string> = {
   "GitHub": github.url,
   "GitHub Copilot": github.url,
 };
+
 
 export function BrandLogo({
   name,
