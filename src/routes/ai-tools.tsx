@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { aiTools } from "@/data/content";
 import { Card, Chip, CTAButton, Reveal, Section } from "@/components/site";
+import { BrandLogo } from "@/components/BrandLogo";
 import { useProgress } from "@/lib/progress";
 
 export const Route = createFileRoute("/ai-tools")({
