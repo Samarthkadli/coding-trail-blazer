@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { platforms } from "@/data/content";
 import { Card, Chip, CTAButton, Reveal, Section } from "@/components/site";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const Route = createFileRoute("/coding")({
   head: () => ({
@@ -26,7 +27,10 @@ function CodingPage() {
           <Reveal key={p.name} delay={i * 40}>
             <Card className="flex h-full flex-col">
               <div className="flex items-start justify-between gap-2">
-                <p className="font-display text-2xl">{p.name} {p.emoji}</p>
+                <div className="flex flex-col gap-2">
+                  <BrandLogo name={p.name} emoji={p.emoji} />
+                  <p className="font-display text-2xl">{p.name}</p>
+                </div>
                 <Chip tone={p.difficulty === "Beginner" ? "success" : p.difficulty === "Easy" ? "cyan" : "orange"}>
                   {p.difficulty}
                 </Chip>

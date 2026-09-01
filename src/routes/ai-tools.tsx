@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { aiTools } from "@/data/content";
 import { Card, Chip, CTAButton, Reveal, Section } from "@/components/site";
+import { BrandLogo } from "@/components/BrandLogo";
 import { useProgress } from "@/lib/progress";
 
 export const Route = createFileRoute("/ai-tools")({
@@ -31,7 +32,10 @@ function AiToolsPage() {
             <Reveal key={t.name} delay={i * 40}>
               <Card className="flex h-full flex-col">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="font-display text-2xl">{t.name} {t.emoji}</p>
+                  <div className="flex flex-col gap-2">
+                    <BrandLogo name={t.name} emoji={t.emoji} />
+                    <p className="font-display text-2xl">{t.name}</p>
+                  </div>
                   <Chip tone={t.difficulty === "Beginner" ? "success" : t.difficulty === "Medium" ? "orange" : "cyan"}>
                     {t.difficulty}
                   </Chip>
