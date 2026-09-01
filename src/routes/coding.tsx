@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { platforms } from "@/data/content";
 import { Card, Chip, CTAButton, Reveal, Section } from "@/components/site";
+import { BrandLogo } from "@/components/BrandLogo";
 
 export const Route = createFileRoute("/coding")({
   head: () => ({
