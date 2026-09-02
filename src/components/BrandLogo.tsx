@@ -26,6 +26,8 @@ const LOGOS: Record<string, string> = {
   "Canva AI": canva.url,
   "GitHub": github.url,
   "GitHub Copilot": github.url,
+  "Lovable": lovable.url,
+  "Google AI Studio": aiStudio.url,
 };
 
 
