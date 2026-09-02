@@ -243,17 +243,90 @@ export const quiz: QuizQuestion[] = [
   { q: "What is Git remembering for you?", options: ["Your passwords", "Every change you make to your code", "Your browser history", "Your emails"], answer: 1, why: "Git is a time machine for code: every change is saved and reversible.", xp: 30 },
 ];
 
-export const startingPaths: Record<string, { emoji: string; label: string; steps: string[] }> = {
-  ai: { emoji: "🤖", label: "AI", steps: ["What AI actually is", "Prompting basics", "Python basics", "Use ChatGPT + Copilot daily", "Build an AI chatbot", "Publish it on GitHub", "Share it on LinkedIn"] },
-  coding: { emoji: "💻", label: "Coding", steps: ["Programming basics", "Python", "Problem solving on HackerRank", "GitHub", "Build a mini project", "Create a portfolio", "Prepare for opportunities"] },
-  web: { emoji: "🌐", label: "Web Development", steps: ["HTML", "CSS", "JavaScript", "Build a portfolio site", "React basics", "Deploy it live", "Add 2 projects to GitHub"] },
-  app: { emoji: "📱", label: "App Development", steps: ["Programming basics", "JavaScript or Kotlin", "UI fundamentals", "Build a to-do app", "Connect an API", "Publish a demo build", "Showcase it"] },
-  data: { emoji: "📊", label: "Data Science", steps: ["Python", "Pandas & spreadsheets", "Statistics basics", "Kaggle Titanic notebook", "Data visualisation", "One end-to-end analysis", "Portfolio write-up"] },
-  cyber: { emoji: "🔐", label: "Cybersecurity", steps: ["How the internet works", "Linux basics", "Networking fundamentals", "TryHackMe beginner rooms", "Python scripting", "Capture-the-flag practice", "Security certifications"] },
-  cloud: { emoji: "☁️", label: "Cloud", steps: ["What cloud computing is", "Linux basics", "One provider (AWS or Azure)", "Deploy a static site", "Docker basics", "CI/CD with GitHub Actions", "Cloud fundamentals certificate"] },
-  design: { emoji: "🎨", label: "UI/UX", steps: ["Design principles", "Figma basics", "Colour & typography", "Redesign one app screen", "Build a case study", "HTML + CSS basics", "Portfolio on Behance"] },
-  projects: { emoji: "🚀", label: "Building Projects", steps: ["Pick one small idea", "Learn only what it needs", "Build the ugly version", "Make it work end to end", "Push to GitHub", "Write a README", "Demo it publicly"] },
-  new: { emoji: "🤷", label: "I'm Completely New", steps: ["Programming basics", "Python", "GitHub", "AI tools", "Build a mini project", "Create portfolio", "Prepare for opportunities"] },
+export type StartingPath = {
+  emoji: string;
+  label: string;
+  steps: string[];
+  tools?: string[];
+  platforms?: string[];
+  projects?: string[];
+};
+
+export const startingPaths: Record<string, StartingPath> = {
+  ai: {
+    emoji: "🤖", label: "AI",
+    steps: ["What AI actually is", "Prompting basics", "Python basics", "Use ChatGPT + Copilot daily", "Build an AI chatbot", "Publish it on GitHub", "Share it on LinkedIn"],
+    tools: ["ChatGPT", "Gemini", "Claude", "Perplexity", "NotebookLM"],
+    platforms: ["GitHub", "Kaggle"],
+    projects: ["AI Chatbot", "AI Study Assistant", "AI Question Generator"],
+  },
+  coding: {
+    emoji: "💻", label: "Coding",
+    steps: ["Programming basics", "Python", "Problem solving on HackerRank", "GitHub", "Build a mini project", "Create a portfolio", "Prepare for opportunities"],
+    tools: ["ChatGPT", "GitHub Copilot", "Cursor", "Replit"],
+    platforms: ["VS Code", "Replit", "HackerRank", "GitHub"],
+    projects: ["Calculator", "To-Do App", "Quiz App"],
+  },
+  web: {
+    emoji: "🌐", label: "Web Development",
+    steps: ["HTML", "CSS", "JavaScript", "Build a portfolio site", "React basics", "Deploy it live", "Add 2 projects to GitHub"],
+    tools: ["ChatGPT", "Cursor", "Canva AI"],
+    platforms: ["VS Code", "GitHub", "Replit"],
+    projects: ["Portfolio Website", "Weather App"],
+  },
+  app: {
+    emoji: "📱", label: "App Development",
+    steps: ["Programming basics", "JavaScript or Kotlin", "UI fundamentals", "Build a to-do app", "Connect an API", "Publish a demo build", "Showcase it"],
+    tools: ["Cursor", "ChatGPT"],
+    platforms: ["VS Code", "GitHub"],
+    projects: ["To-Do App", "Chat Application"],
+  },
+  data: {
+    emoji: "📊", label: "Data Science",
+    steps: ["Python", "Pandas & spreadsheets", "Statistics basics", "Kaggle Titanic notebook", "Data visualisation", "One end-to-end analysis", "Portfolio write-up"],
+    tools: ["ChatGPT", "NotebookLM"],
+    platforms: ["Kaggle", "GitHub"],
+    projects: ["Expense Tracker", "Student Management System", "Image Classifier"],
+  },
+  cyber: {
+    emoji: "🔐", label: "Cybersecurity",
+    steps: ["How the internet works", "Linux basics", "Networking fundamentals", "TryHackMe beginner rooms", "Python scripting", "Capture-the-flag practice", "Security certifications"],
+    tools: ["Perplexity", "ChatGPT"],
+    platforms: ["Stack Overflow", "GitHub"],
+    projects: ["Student Management System"],
+  },
+  cloud: {
+    emoji: "☁️", label: "Cloud",
+    steps: ["What cloud computing is", "Linux basics", "One provider (AWS or Azure)", "Deploy a static site", "Docker basics", "CI/CD with GitHub Actions", "Cloud fundamentals certificate"],
+    tools: ["ChatGPT", "Perplexity"],
+    platforms: ["GitHub", "Replit"],
+    projects: ["Portfolio Website", "Weather App"],
+  },
+  design: {
+    emoji: "🎨", label: "UI/UX",
+    steps: ["Design principles", "Figma basics", "Colour & typography", "Redesign one app screen", "Build a case study", "HTML + CSS basics", "Portfolio on Behance"],
+    tools: ["Canva AI", "Gamma", "ChatGPT"],
+    platforms: ["GitHub"],
+    projects: ["Portfolio Website"],
+  },
+  projects: {
+    emoji: "🚀", label: "Building Projects",
+    steps: ["Pick one small idea", "Learn only what it needs", "Build the ugly version", "Make it work end to end", "Push to GitHub", "Write a README", "Demo it publicly"],
+    tools: ["ChatGPT", "GitHub Copilot", "Cursor"],
+    platforms: ["GitHub", "VS Code", "Replit"],
+    projects: ["Calculator", "To-Do App", "Portfolio Website"],
+  },
+  new: {
+    emoji: "🤷", label: "I'm Completely New",
+    steps: ["Programming basics", "Python", "GitHub", "AI tools", "Build a mini project", "Create portfolio", "Prepare for opportunities"],
+    tools: ["ChatGPT", "Gemini", "Replit"],
+    platforms: ["GitHub", "VS Code", "Replit"],
+    projects: ["Calculator", "To-Do App"],
+  },
+  tools: {
+    emoji: "🧰", label: "Explore Tools",
+    steps: ["Pick one tool below", "Open it and try the beginner tip", "Ask it to explain a topic you find hard", "Use it daily for a week", "Add it to your study workflow"],
+  },
 };
 
 export const careerTracks = [

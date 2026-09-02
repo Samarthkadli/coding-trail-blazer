@@ -95,9 +95,13 @@ export function AdventureMap({ compact = false }: { compact?: boolean }) {
                     <span className="self-center text-sm font-bold text-success-foreground">Checkpoint cleared 🎉</span>
                   ) : (
                     <CTAButton
-                      onClick={() => !locked && complete(w.id, w.xp)}
+                      onClick={() => {
+                        if (locked) return;
+                        complete(w.id, w.xp);
+                        if (open === w.id) setOpen(null);
+                      }}
                       variant={locked || (lab && !compact) ? "ghost" : "primary"}
-                      className={cn("px-5 py-2.5", locked && "cursor-not-allowed opacity-60")}
+                      className={cn("px-5 py-2.5", locked && "pointer-events-none cursor-not-allowed opacity-60")}
                     >
                       {locked ? "Finish the previous world first" : `Complete ${w.name} →`}
                     </CTAButton>
