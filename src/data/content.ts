@@ -139,6 +139,8 @@ export const aiTools: AiTool[] = [
   { name: "Cursor", emoji: "⌨️", what: "A code editor with AI built into every keystroke.", bestFor: ["Editing whole projects", "Refactoring", "Explaining code"], difficulty: "Medium", tip: "Ask it to explain a file before you change anything.", url: "https://cursor.com" },
   { name: "Replit", emoji: "🧪", what: "Write and run code in your browser with AI help.", bestFor: ["First programs", "Sharing demos", "No-setup coding"], difficulty: "Beginner", tip: "Fork someone's project and change one line at a time.", url: "https://replit.com" },
   { name: "NotebookLM", emoji: "🗒️", what: "Upload your notes and ask questions about them.", bestFor: ["Exam revision", "Summaries", "Audio overviews"], difficulty: "Beginner", tip: "Upload a full syllabus and ask for a 7-day study plan.", url: "https://notebooklm.google.com" },
+  { name: "Lovable", emoji: "💖", what: "Describe your app idea and watch AI build it live.", bestFor: ["Building apps with no code", "Websites", "Prototypes"], difficulty: "Beginner", tip: "Start with one small feature, then keep adding with follow-up prompts.", url: "https://lovable.dev" },
+  { name: "Google AI Studio", emoji: "🧠", what: "Google's playground to test AI models and build prompts.", bestFor: ["Trying Gemini models", "Prompt experiments", "AI prototypes"], difficulty: "Easy", tip: "Use the prompt gallery to learn how good prompts are structured.", url: "https://aistudio.google.com" },
 ];
 
 export type Platform = {

@@ -11,6 +11,8 @@ import perplexity from "@/assets/logos/perplexity-v2.png.asset.json";
 import notebooklm from "@/assets/logos/notebooklm-v2.png.asset.json";
 import canva from "@/assets/logos/canva.jpeg.asset.json";
 import github from "@/assets/logos/github-v2.png.asset.json";
+import lovable from "@/assets/logos/lovable-ai.png.asset.json";
+import aiStudio from "@/assets/logos/google-ai-studio.png.asset.json";
 
 const LOGOS: Record<string, string> = {
   "ChatGPT": chatgpt.url,
