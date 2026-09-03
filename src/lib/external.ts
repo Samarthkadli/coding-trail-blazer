@@ -1,10 +1,9 @@
-// Opening an external site from inside an embedded preview can be blocked when
-// the frame's sandbox refuses `target="_blank"` navigations (the browser shows a
-// blocked page instead of the site). These helpers always try a real top-level
-// navigation and fall back gracefully, so official tool links keep working
-// everywhere: preview, published site, and mobile browsers.
+// Opening an external site from inside an embedded preview must ALWAYS happen in
+// a new top-level tab. Navigating the current document instead makes sites that
+// refuse framing (claude.ai, chatgpt.com, ...) show "refused to connect", so we
+// never fall back to same-document navigation.
 
-import type { MouseEvent } from "react";
+import { toast } from "sonner";
 
 export function openExternal(url: string) {
   if (typeof window === "undefined") return;
@@ -15,26 +14,23 @@ export function openExternal(url: string) {
       return;
     }
   } catch {
-    /* popup blocked — fall through */
+    /* popup blocked */
   }
+  // Could not open a tab (popup blocker). Never navigate in-frame — tell the user.
   try {
-    // Escape the preview frame when possible, otherwise navigate this document.
-    (window.top ?? window).location.href = url;
+    void navigator.clipboard?.writeText(url);
+    toast("Popup blocked — link copied", { description: url });
   } catch {
-    window.location.href = url;
+    toast("Popup blocked", { description: url });
   }
 }
 
 export function externalLinkProps(url: string) {
+  // A plain anchor with target="_blank" is the most reliable path: the browser
+  // opens a real top-level tab. No onClick interception.
   return {
     href: url,
     target: "_blank" as const,
     rel: "noopener noreferrer",
-    onClick: (event: MouseEvent) => {
-      // Let modifier-clicks (new tab/window) behave natively.
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) return;
-      event.preventDefault();
-      openExternal(url);
-    },
   };
 }
