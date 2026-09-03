@@ -85,9 +85,7 @@ export function StarterPicker() {
                   {pathTools.map((t, i) => (
                     <a
                       key={t.name}
-                      href={t.url}
-                      target="_blank"
-                      rel="noreferrer"
+                      {...externalLinkProps(t.url)}
                       style={{ animationDelay: `${i * 50}ms` }}
                       className="animate-rise group flex items-center gap-3 rounded-2xl bg-secondary/70 px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-soft"
                     >
