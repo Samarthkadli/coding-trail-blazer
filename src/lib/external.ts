@@ -4,6 +4,8 @@
 // navigation and fall back gracefully, so official tool links keep working
 // everywhere: preview, published site, and mobile browsers.
 
+import type { MouseEvent } from "react";
+
 export function openExternal(url: string) {
   if (typeof window === "undefined") return;
   try {
@@ -28,7 +30,7 @@ export function externalLinkProps(url: string) {
     href: url,
     target: "_blank" as const,
     rel: "noopener noreferrer",
-    onClick: (event: React.MouseEvent) => {
+    onClick: (event: MouseEvent) => {
       // Let modifier-clicks (new tab/window) behave natively.
       if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey) return;
       event.preventDefault();
