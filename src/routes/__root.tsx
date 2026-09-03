@@ -17,6 +17,7 @@ import { Footer } from "@/components/site";
 import { QuestBot } from "@/components/QuestBot";
 import { XpToast } from "@/components/XpToast";
 import { ProgressProvider } from "@/lib/progress";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -149,6 +150,7 @@ function RootComponent() {
         </div>
         <QuestBot />
         <XpToast />
+        <Toaster />
       </ProgressProvider>
     </QueryClientProvider>
   );
