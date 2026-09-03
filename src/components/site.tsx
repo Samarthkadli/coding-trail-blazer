@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { externalLinkProps } from "@/lib/external";
 
 export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
