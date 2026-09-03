@@ -126,7 +126,7 @@ export function CTAButton({
   const cls = cn(base, styles, className);
   if (href)
     return (
-      <a href={href} target="_blank" rel="noreferrer" className={cls}>
+      <a {...externalLinkProps(href)} className={cls}>
         {children}
       </a>
     );
