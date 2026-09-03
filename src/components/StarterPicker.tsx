@@ -6,6 +6,7 @@ import { slugify } from "@/data/project-code";
 import { BrandLogo } from "@/components/BrandLogo";
 import { Chip, Reveal } from "@/components/site";
 import { cn } from "@/lib/utils";
+import { externalLinkProps } from "@/lib/external";
 
 export function StarterPicker() {
   const [picked, setPicked] = useState<string | null>(null);
@@ -85,9 +86,7 @@ export function StarterPicker() {
                   {pathTools.map((t, i) => (
                     <a
                       key={t.name}
-                      href={t.url}
-                      target="_blank"
-                      rel="noreferrer"
+                      {...externalLinkProps(t.url)}
                       style={{ animationDelay: `${i * 50}ms` }}
                       className="animate-rise group flex items-center gap-3 rounded-2xl bg-secondary/70 px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-soft"
                     >
@@ -110,7 +109,7 @@ export function StarterPicker() {
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {pathPlatforms.map((p) => (
-                    <a key={p.name} href={p.url} target="_blank" rel="noreferrer">
+                    <a key={p.name} {...externalLinkProps(p.url)}>
                       <Chip tone="cyan">
                         <span className="inline-flex items-center gap-1.5">
                           {p.emoji} {p.name} <ExternalLink className="size-3" />
