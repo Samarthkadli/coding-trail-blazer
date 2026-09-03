@@ -90,8 +90,22 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;
 }
 
+const FALLBACK: Ctx = {
+  ...DEFAULT,
+  hydrated: false,
+  lastGain: null,
+  isDone: (id: string) => DEFAULT.done.includes(id),
+  complete: () => {},
+  addXp: () => {},
+  reset: () => {},
+  level: ([...levels].reverse().find((l) => DEFAULT.xp >= l.min) ?? levels[0])!,
+  next: levels.find((l) => l.min > DEFAULT.xp) ?? null,
+  levelProgress: 0,
+};
+
 export function useProgress() {
   const ctx = useContext(ProgressContext);
-  if (!ctx) throw new Error("useProgress must be used inside ProgressProvider");
-  return ctx;
+  // Never crash the app (e.g. during HMR when the provider module reloads);
+  // fall back to a read-only snapshot instead of throwing.
+  return ctx ?? FALLBACK;
 }
