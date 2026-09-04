@@ -1,32 +1,33 @@
-// External tools must escape the embedded preview completely. Several AI sites
-// deny iframe rendering, and some preview hosts keep target="_blank" pages in an
-// internal webview. Native target="_top" navigation cannot remain in that frame.
+// External tools must open in a NEW browser tab. The app runs inside an
+// embedded preview iframe: target="_top" or in-frame navigation gets blocked
+// by AI sites that deny framing ("refused to connect" / "blocked"). A plain
+// _blank anchor (plus a window.open fallback) always escapes the iframe.
 
 import { toast } from "sonner";
 
 export function openExternal(url: string) {
   if (typeof window === "undefined") return;
   try {
-    window.open(url, "_top");
-    return;
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (win) return;
   } catch {
-    /* top-level navigation blocked by the host */
+    /* popup blocked */
   }
-  // Never navigate a child frame to an AI site; copy the URL as a safe fallback.
+  // Popup blocked: copy the URL so the user can paste it in a new tab.
   try {
     void navigator.clipboard?.writeText(url);
-    toast("External navigation blocked — link copied", { description: url });
+    toast("Popup blocked — link copied", { description: url });
   } catch {
-    toast("External navigation blocked", { description: url });
+    toast("Popup blocked", { description: url });
   }
 }
 
 export function externalLinkProps(url: string) {
-  // Keep this as a native anchor so the browser recognizes the user activation.
-  // _top deliberately escapes Lovable's preview iframe and other embedded hosts.
+  // Native anchor keeps user activation; _blank opens the real tool site in
+  // its own tab so frame-blocking headers never affect it.
   return {
     href: url,
-    target: "_top" as const,
+    target: "_blank" as const,
     rel: "noopener noreferrer",
   };
 }
