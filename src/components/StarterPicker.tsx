@@ -4,22 +4,22 @@ import { ArrowRight, Check, ExternalLink } from "lucide-react";
 import { aiTools, platforms, projects, startingPaths } from "@/data/content";
 import { slugify } from "@/data/project-code";
 import { BrandLogo } from "@/components/BrandLogo";
-import { Chip, Reveal } from "@/components/site";
+import { Chip, CTAButton, Reveal } from "@/components/site";
 import { cn } from "@/lib/utils";
-import { externalLinkProps } from "@/lib/external";
+import { externalLinkProps, openAllExternal } from "@/lib/external";
 
 export function StarterPicker() {
   const [picked, setPicked] = useState<string | null>(null);
   const path = picked ? startingPaths[picked] : null;
-  const showAllTools = picked === "tools";
+  const showAll = picked === "tools";
 
-  const pathTools = showAllTools
+  const pathTools = showAll
     ? aiTools
     : (path?.tools ?? [])
         .map((n) => aiTools.find((t) => t.name === n))
         .filter((t): t is (typeof aiTools)[number] => Boolean(t));
 
-  const pathPlatforms = (path?.platforms ?? [])
+  const pathPlatforms = (showAll ? platforms : (path?.platforms ?? []))
     .map((n) => platforms.find((p) => p.name === n))
     .filter((p): p is (typeof platforms)[number] => Boolean(p));
 
@@ -57,7 +57,7 @@ export function StarterPicker() {
         {path && (
           <div key={picked} className="animate-pop mt-8 rounded-3xl bg-card p-5 shadow-soft sm:p-6">
             <p className="font-display text-xl">
-              {showAllTools ? "All AI Tools" : "Your Adventure Path"} {path.emoji}{" "}
+              {showAll ? "All AI Tools & Coding Platforms" : "Your Adventure Path"} {path.emoji}{" "}
               <span className="text-muted-foreground">— {path.label}</span>
             </p>
 
@@ -77,12 +77,23 @@ export function StarterPicker() {
               ))}
             </ol>
 
+            {showAll && (
+              <div className="mt-5 flex flex-wrap gap-2">
+                <CTAButton onClick={() => openAllExternal(aiTools.map((t) => t.url))}>
+                  Open all AI tools
+                </CTAButton>
+                <CTAButton variant="ghost" onClick={() => openAllExternal(platforms.map((p) => p.url))}>
+                  Open all coding platforms
+                </CTAButton>
+              </div>
+            )}
+
             {pathTools.length > 0 && (
               <div className="mt-6">
                 <p className="text-xs font-black tracking-widest text-muted-foreground uppercase">
-                  {showAllTools ? "Every tool in your toolbox" : "Tools for this path"}
+                  {showAll ? "Every tool in your toolbox" : "Tools for this path"}
                 </p>
-                <div className={cn("mt-3 grid gap-3", showAllTools ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2")}>
+                <div className={cn("mt-3 grid gap-3", showAll ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2")}>
                   {pathTools.map((t, i) => (
                     <a
                       key={t.name}
