@@ -23,12 +23,20 @@ export function openExternal(url: string) {
 
 export function openAllExternal(urls: string[]) {
   if (typeof window === "undefined") return { opened: 0, blocked: urls.length };
+  // Prefer the top browsing context so links escape embedded previews.
+  let topOpener: Window | null = null;
+  try {
+    topOpener = window.top;
+  } catch {
+    topOpener = null;
+  }
+  const opener = topOpener ?? window;
+
   let opened = 0;
   let blocked = 0;
   for (const url of urls) {
     try {
-      // Open each link in its own top-level tab from the user gesture.
-      const win = window.open(url, "_blank", "noopener,noreferrer");
+      const win = opener.open(url, "_blank", "noopener,noreferrer");
       if (win) opened++;
       else blocked++;
     } catch {
