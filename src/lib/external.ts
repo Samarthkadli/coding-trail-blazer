@@ -21,6 +21,38 @@ export function openExternal(url: string) {
   }
 }
 
+export function openAllExternal(urls: string[]) {
+  if (typeof window === "undefined") return { opened: 0, blocked: urls.length };
+  // Prefer the top browsing context so links escape embedded previews.
+  let topOpener: Window | null = null;
+  try {
+    topOpener = window.top;
+  } catch {
+    topOpener = null;
+  }
+  const opener = topOpener ?? window;
+
+  let opened = 0;
+  let blocked = 0;
+  for (const url of urls) {
+    try {
+      const win = opener.open(url, "_blank", "noopener,noreferrer");
+      if (win) opened++;
+      else blocked++;
+    } catch {
+      blocked++;
+    }
+  }
+  if (blocked > 0) {
+    toast(`Opened ${opened} of ${urls.length} links`, {
+      description: "Your browser blocked the rest. Try opening them individually or allow pop-ups for this site.",
+    });
+  } else if (opened > 0) {
+    toast(`Opened ${opened} links`, { description: "Check your other tabs!" });
+  }
+  return { opened, blocked };
+}
+
 export function externalLinkProps(url: string) {
   // Keep this as a native anchor so the browser recognizes the user activation.
   // _top deliberately escapes Lovable's preview iframe and other embedded hosts.
