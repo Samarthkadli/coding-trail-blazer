@@ -328,6 +328,8 @@ export const startingPaths: Record<string, StartingPath> = {
   tools: {
     emoji: "🧰", label: "Explore Tools",
     steps: ["Pick one tool below", "Open it and try the beginner tip", "Ask it to explain a topic you find hard", "Use it daily for a week", "Add it to your study workflow"],
+    tools: aiTools.map((t) => t.name),
+    platforms: platforms.map((p) => p.name),
   },
 };
 
