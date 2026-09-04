@@ -19,9 +19,11 @@ export function StarterPicker() {
         .map((n) => aiTools.find((t) => t.name === n))
         .filter((t): t is (typeof aiTools)[number] => Boolean(t));
 
-  const pathPlatforms = (showAll ? platforms : (path?.platforms ?? []))
-    .map((n) => platforms.find((p) => p.name === n))
-    .filter((p): p is (typeof platforms)[number] => Boolean(p));
+  const pathPlatforms = showAll
+    ? platforms
+    : (path?.platforms ?? [])
+        .map((n) => platforms.find((p) => p.name === n))
+        .filter((p): p is (typeof platforms)[number] => Boolean(p));
 
   const pathProjects = (path?.projects ?? [])
     .map((n) => projects.find((p) => p.name === n))
