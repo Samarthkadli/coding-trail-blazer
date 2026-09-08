@@ -4,6 +4,20 @@ import { cn } from "@/lib/utils";
 
 type Msg = { from: "bot" | "me"; text: string };
 
+const NAME_KEY = "codequest-name";
+
+function loadName(): string {
+  try {
+    return localStorage.getItem(NAME_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function withName(name: string, text: string): string {
+  return name ? `${name}, ${text.charAt(0).toLowerCase()}${text.slice(1)}` : text;
+}
+
 const suggestions = [
   "What should I learn first?",
   "What is GitHub?",
@@ -35,14 +49,42 @@ function answer(q: string): string {
 export function QuestBot() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [msgs, setMsgs] = useState<Msg[]>([
-    { from: "bot", text: "Hey Explorer! 👋 Stuck somewhere? Ask me anything about AI, coding or technology." },
-  ]);
+  const [msgs, setMsgs] = useState<Msg[]>([]);
+  const [name, setName] = useState(loadName);
+  const [awaitingName, setAwaitingName] = useState(false);
 
   const send = (text: string) => {
-    if (!text.trim()) return;
-    setMsgs((m) => [...m, { from: "me", text }, { from: "bot", text: answer(text) }]);
+    const t = text.trim();
+    if (!t) return;
     setInput("");
+
+    if (awaitingName) {
+      const n = t.split(/\s+/)[0];
+      const clean = n.charAt(0).toUpperCase() + n.slice(1);
+      setName(clean);
+      try {
+        localStorage.setItem(NAME_KEY, clean);
+      } catch {}
+      setAwaitingName(false);
+      setMsgs((m) => [
+        ...m,
+        { from: "me", text: t },
+        { from: "bot", text: `Nice to meet you, ${clean}! 🎉 Now ask me anything about AI, coding or technology.` },
+      ]);
+      return;
+    }
+
+    if (!name) {
+      setAwaitingName(true);
+      setMsgs((m) => [
+        ...m,
+        { from: "me", text: t },
+        { from: "bot", text: "Hey! 👋 Before we dive in — what's your name? So I can greet you properly." },
+      ]);
+      return;
+    }
+
+    setMsgs((m) => [...m, { from: "me", text: t }, { from: "bot", text: withName(name, answer(t)) }]);
   };
 
   return (
