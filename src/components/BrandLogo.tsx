@@ -13,6 +13,7 @@ import canva from "@/assets/logos/canva.jpeg.asset.json";
 import github from "@/assets/logos/github-v2.png.asset.json";
 import lovable from "@/assets/logos/lovable-ai.png.asset.json";
 import aiStudio from "@/assets/logos/google-ai-studio.png.asset.json";
+import androidStudio from "@/assets/logos/android-studio.png";
 
 const LOGOS: Record<string, string> = {
   "ChatGPT": chatgpt.url,
@@ -28,6 +29,7 @@ const LOGOS: Record<string, string> = {
   "GitHub Copilot": github.url,
   "Lovable": lovable.url,
   "Google AI Studio": aiStudio.url,
+  "Android Studio": androidStudio,
 };
 
 
