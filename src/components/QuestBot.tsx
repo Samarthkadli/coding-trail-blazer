@@ -59,7 +59,7 @@ export function QuestBot() {
     setInput("");
 
     if (awaitingName) {
-      const n = t.split(/\s+/)[0];
+      const n = t.split(/\s+/)[0] ?? t;
       const clean = n.charAt(0).toUpperCase() + n.slice(1);
       setName(clean);
       try {
