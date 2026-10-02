@@ -3,6 +3,7 @@ import { projects } from "@/data/content";
 import { getGuide, slugify } from "@/data/project-code";
 import { Chip, CTAButton, XpTag } from "@/components/site";
 import { CodeLab } from "@/components/CodeLab";
+import { ProjectLaunch, PracticeZone } from "@/components/ProjectLaunch";
 import { useProgress } from "@/lib/progress";
 
 export const Route = createFileRoute("/projects/$slug")({
@@ -82,6 +83,8 @@ function ProjectDetail() {
         previewTitle={`${project.name} live preview`}
       />
 
+      <ProjectLaunch guide={guide} name={project.name} />
+
       {/* ==== Build guide ==== */}
       <div className="mt-10 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 rounded-2xl border border-border bg-card p-6">
@@ -113,6 +116,8 @@ function ProjectDetail() {
           </div>
         </div>
       </div>
+
+      <PracticeZone guide={guide} name={project.name} />
 
       <div className="mt-8 flex flex-wrap gap-3">
         <CTAButton
