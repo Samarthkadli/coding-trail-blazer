@@ -31,6 +31,7 @@ const LOGOS: Record<string, string> = {
   "Lovable": lovable.url,
   "Google AI Studio": aiStudio.url,
   "Android Studio": androidStudio,
+  "W3Schools": w3schools,
 };
 
 
