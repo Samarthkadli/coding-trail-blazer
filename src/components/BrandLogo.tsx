@@ -14,6 +14,7 @@ import github from "@/assets/logos/github-v2.png.asset.json";
 import lovable from "@/assets/logos/lovable-ai.png.asset.json";
 import aiStudio from "@/assets/logos/google-ai-studio.png.asset.json";
 import androidStudio from "@/assets/logos/android-studio.png";
+import w3schools from "@/assets/logos/w3schools.svg";
 
 const LOGOS: Record<string, string> = {
   "ChatGPT": chatgpt.url,
@@ -30,6 +31,7 @@ const LOGOS: Record<string, string> = {
   "Lovable": lovable.url,
   "Google AI Studio": aiStudio.url,
   "Android Studio": androidStudio,
+  "W3Schools": w3schools,
 };
 
 
