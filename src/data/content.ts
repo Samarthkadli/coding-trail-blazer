@@ -275,7 +275,7 @@ export const startingPaths: Record<string, StartingPath> = {
     emoji: "🌐", label: "Web Development",
     steps: ["HTML", "CSS", "JavaScript", "Build a portfolio site", "React basics", "Deploy it live", "Add 2 projects to GitHub"],
     tools: ["ChatGPT", "Cursor", "Canva AI", "Gamma", "Lovable"],
-    platforms: ["VS Code", "GitHub", "Replit"],
+    platforms: ["W3Schools", "VS Code", "GitHub", "Replit"],
     projects: ["Portfolio Website", "Weather App"],
   },
   app: {
