@@ -22,8 +22,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full">
       <div className="glass mx-auto mt-3 flex w-[min(1180px,94vw)] items-center gap-3 rounded-2xl px-4 py-2.5">
-        <Link to="/" className="font-display text-lg tracking-tight">
-          <span className="gradient-text">CodeQuest</span> 🚀
+        <Link to="/" className="font-display text-lg tracking-tight" aria-label="AIVORA home">
+          <span className="gradient-text">AIVORA</span>
         </Link>
 
         <nav className="ml-4 hidden flex-1 items-center gap-1 lg:flex">

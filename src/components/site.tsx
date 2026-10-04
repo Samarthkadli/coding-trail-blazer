@@ -150,7 +150,7 @@ export function Footer() {
       <div className="mx-auto grid w-[min(1180px,92vw)] gap-8 sm:grid-cols-3">
         <div>
           <p className="font-display text-xl">
-            <span className="gradient-text">CodeQuest</span> 🚀
+            <span className="gradient-text">AIVORA</span>
           </p>
           <p className="mt-2 max-w-xs text-sm text-muted-foreground">
             Your adventure into AI, coding & the future.
