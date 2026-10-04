@@ -24,9 +24,6 @@
  */
 
 @theme inline {
-  --color-brand-night: var(--brand-night);
-  --color-brand-light: var(--brand-light);
-  --color-brand-mist: var(--brand-mist);
   --color-primary-glow: var(--primary-glow);
   --color-cyan: var(--cyan);
   --color-cyan-foreground: var(--cyan-foreground);
@@ -78,9 +75,6 @@
 }
 
 :root {
-  --brand-night: oklch(0.11 0.035 267);
-  --brand-light: oklch(0.98 0.015 250);
-  --brand-mist: oklch(0.84 0.035 252);
   --radius: 0.625rem;
   --background: oklch(0.985 0.012 275);
   --foreground: oklch(0.24 0.06 275);
