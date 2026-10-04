@@ -49,7 +49,7 @@ function Home() {
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <CTAButton to="/adventure">Start My Adventure <ArrowRight className="size-4" /></CTAButton>
-            <CTAButton to="/ai-tools" variant="ghost" className="border border-brand-mist/50 bg-brand-night/70 text-brand-light hover:bg-brand-night/90">
+            <CTAButton to="/ai-tools" variant="brand">
               <Compass className="size-4" /> Explore AI Tools
             </CTAButton>
           </div>

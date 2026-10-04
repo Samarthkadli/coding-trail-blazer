@@ -115,7 +115,7 @@ export function CTAButton({
   to?: string;
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "ghost" | "brand";
   className?: string;
 }) {
   const base =
@@ -123,7 +123,9 @@ export function CTAButton({
   const styles =
     variant === "primary"
       ? "bg-gradient-primary text-primary-foreground shadow-glow hover:brightness-110 hover:-translate-y-0.5"
-      : "glass text-foreground hover:-translate-y-0.5 hover:shadow-lift";
+      : variant === "brand"
+        ? "border border-brand-mist/50 bg-brand-night/80 text-brand-light hover:bg-brand-night hover:-translate-y-0.5"
+        : "glass text-foreground hover:-translate-y-0.5 hover:shadow-lift";
   const cls = cn(base, styles, className);
   if (href)
     return (
