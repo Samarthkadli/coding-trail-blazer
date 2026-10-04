@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Compass, Flame, Trophy } from "lucide-react";
-import heroImage from "@/assets/hero-adventure.jpg";
+import brandBackdrop from "@/assets/aivora-backdrop.jpg";
+import brandSymbol from "@/assets/aivora-symbol.png";
+import brandWordmark from "@/assets/aivora-wordmark.png";
 import { Section, Card, Chip, CTAButton, Reveal, XpTag } from "@/components/site";
 import { AdventureMap } from "@/components/AdventureMap";
 import { StarterPicker } from "@/components/StarterPicker";
@@ -10,17 +12,19 @@ import { aiTools, badges, platforms, projects, quests, showcase } from "@/data/c
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CodeQuest — Your Adventure Into AI, Coding & the Future" },
+      { title: "AIVORA — Discover. Learn. Create with AI." },
       {
         name: "description",
         content:
-          "CodeQuest turns AI, coding, GitHub and tech careers into a friendly adventure for total beginners. Explore worlds, earn XP, unlock badges and build real projects.",
+          "AIVORA turns AI, coding, GitHub and tech careers into a friendly adventure for total beginners. Explore worlds, earn XP, unlock badges and build real projects.",
       },
-      { property: "og:title", content: "CodeQuest — Your Adventure Into AI, Coding & the Future" },
+      { property: "og:title", content: "AIVORA — Discover. Learn. Create with AI." },
       {
         property: "og:description",
-        content: "From 'I don't know where to start' to 'I can build things'. A gamified beginner path through AI, coding, tools and careers.",
+        content: "From 'I don't know where to start' to 'I can build things'. Discover AI tools, coding, projects and careers with AIVORA.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -29,49 +33,25 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid w-[min(1180px,92vw)] items-center gap-10 py-12 sm:py-20 lg:grid-cols-2">
-          <div className="animate-rise">
-            <Chip tone="orange">🎮 Learning, but make it an adventure</Chip>
-            <h1 className="text-halo mt-4 text-4xl leading-[1.1] sm:text-6xl">
-              Your Tech Adventure <span className="gradient-text">Starts Here</span> 🚀
-            </h1>
-            <p className="glass mt-5 max-w-xl rounded-2xl px-5 py-4 text-lg font-semibold text-foreground">
-              AI, coding, GitHub, tools, projects... Technology can feel overwhelming. We'll help you discover it one
-              step at a time.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <CTAButton to="/adventure">
-                Start My Adventure <ArrowRight className="size-4" />
-              </CTAButton>
-              <CTAButton to="/ai-tools" variant="ghost">
-                <Compass className="size-4" /> Explore Tech World
-              </CTAButton>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-2 text-sm font-bold">
-              <span className="glass rounded-full px-3 py-1.5">6 worlds to explore</span>
-              <span className="glass rounded-full px-3 py-1.5">11 AI tools explained</span>
-              <span className="glass rounded-full px-3 py-1.5">13 buildable projects</span>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="animate-float glass overflow-hidden rounded-[2.5rem] p-2">
-              <img
-                src={heroImage}
-                alt="A student explorer stepping through a glowing portal into a digital world of AI, Python, GitHub and cloud islands"
-                width={1280}
-                height={1024}
-                className="w-full rounded-[2rem]"
-              />
-            </div>
-            <div className="glass animate-float absolute -bottom-5 -left-3 rounded-2xl px-4 py-3 [animation-delay:1.4s] sm:left-6">
-              <p className="text-xs font-black text-muted-foreground">LEVEL UP</p>
-              <p className="font-display text-lg">Level 3 — AI Adventurer 🤖</p>
-            </div>
-            <div className="glass animate-float absolute -top-4 right-2 rounded-2xl px-4 py-3 [animation-delay:0.7s]">
-              <XpTag xp={100} />
-            </div>
+      <section className="relative isolate min-h-[520px] overflow-hidden bg-brand-night text-brand-light sm:min-h-[610px]">
+        <img src={brandBackdrop} alt="" aria-hidden="true" className="absolute inset-0 -z-10 size-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-brand-night/20" />
+        <div className="mx-auto flex w-[min(1180px,92vw)] flex-col items-center justify-center px-2 py-10 text-center sm:py-12">
+          <img src={brandSymbol} alt="" aria-hidden="true" width={639} height={485} className="h-auto w-[min(53vw,245px)] drop-shadow-lg sm:w-[min(30vw,295px)]" />
+          <h1 className="mt-1 w-[min(78vw,440px)] sm:mt-2">
+            <span className="sr-only">AIVORA</span>
+            <img src={brandWordmark} alt="" aria-hidden="true" width={697} height={93} className="h-auto w-full" />
+          </h1>
+          <p className="mt-3 text-xs font-semibold text-brand-mist sm:text-base">Discover. Learn. Create with AI.</p>
+          <div className="mt-4 h-0.5 w-20 rounded-full bg-gradient-primary" aria-hidden="true" />
+          <p className="mt-5 max-w-lg text-sm font-semibold leading-relaxed text-brand-mist sm:text-base">
+            Your adventure into AI, coding and building things starts here.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <CTAButton to="/adventure">Start My Adventure <ArrowRight className="size-4" /></CTAButton>
+            <CTAButton to="/ai-tools" variant="brand">
+              <Compass className="size-4" /> Explore AI Tools
+            </CTAButton>
           </div>
         </div>
       </section>

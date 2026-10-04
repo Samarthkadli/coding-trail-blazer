@@ -115,7 +115,7 @@ export function CTAButton({
   to?: string;
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "ghost" | "brand";
   className?: string;
 }) {
   const base =
@@ -123,7 +123,9 @@ export function CTAButton({
   const styles =
     variant === "primary"
       ? "bg-gradient-primary text-primary-foreground shadow-glow hover:brightness-110 hover:-translate-y-0.5"
-      : "glass text-foreground hover:-translate-y-0.5 hover:shadow-lift";
+      : variant === "brand"
+        ? "border border-brand-mist/50 bg-brand-night/80 text-brand-light hover:bg-brand-night hover:-translate-y-0.5"
+        : "glass text-foreground hover:-translate-y-0.5 hover:shadow-lift";
   const cls = cn(base, styles, className);
   if (href)
     return (
@@ -150,7 +152,7 @@ export function Footer() {
       <div className="mx-auto grid w-[min(1180px,92vw)] gap-8 sm:grid-cols-3">
         <div>
           <p className="font-display text-xl">
-            <span className="gradient-text">CodeQuest</span> 🚀
+            <span className="gradient-text">AIVORA</span>
           </p>
           <p className="mt-2 max-w-xs text-sm text-muted-foreground">
             Your adventure into AI, coding & the future.
