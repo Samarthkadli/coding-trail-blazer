@@ -21,6 +21,8 @@ export const Route = createFileRoute("/journey")({
         property: "og:description",
         content: "From 'I don't know where to start' to 'I can build things'. A gamified beginner path through AI, coding, tools and careers.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,

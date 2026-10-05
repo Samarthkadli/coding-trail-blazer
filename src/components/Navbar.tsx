@@ -5,7 +5,7 @@ import { useProgress } from "@/lib/progress";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { to: "/", label: "Home" },
+  { to: "/journey", label: "Home" },
   { to: "/adventure", label: "Adventure" },
   { to: "/ai-tools", label: "AI Tools" },
   { to: "/coding", label: "Coding" },
@@ -22,7 +22,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full">
       <div className="glass mx-auto mt-3 flex w-[min(1180px,94vw)] items-center gap-3 rounded-2xl px-4 py-2.5">
-        <Link to="/" className="font-display text-lg tracking-tight">
+        <Link to="/journey" className="font-display text-lg tracking-tight">
           <span className="gradient-text">CodeQuest</span> 🚀
         </Link>
 
@@ -31,7 +31,7 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              activeOptions={{ exact: l.to === "/" }}
+               activeOptions={{ exact: l.to === "/journey" }}
               className="rounded-full px-3 py-1.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               activeProps={{ className: "bg-secondary text-foreground" }}
             >
@@ -79,7 +79,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="rounded-xl px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-secondary"
               activeProps={{ className: "bg-secondary text-foreground" }}
-              activeOptions={{ exact: l.to === "/" }}
+               activeOptions={{ exact: l.to === "/journey" }}
             >
               {l.label}
             </Link>
