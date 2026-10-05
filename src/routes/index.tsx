@@ -22,7 +22,7 @@ function Intro() {
       <Link
         to="/journey"
         aria-label="Open Your Tech Adventure Starts Here"
-        className="aivora-artwork block aspect-square w-[min(100%,85dvh,850px)] overflow-hidden rounded-full outline-none transition-transform duration-300 hover:scale-[1.015] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-intro-foreground active:scale-[0.99]"
+        className="aivora-artwork block aspect-square w-[min(100%,85dvh,850px)] overflow-hidden outline-none transition-transform duration-300 hover:scale-[1.015] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-intro-foreground active:scale-[0.99]"
       >
         <img src={aivoraReference.url} alt="AIVORA orbital A logo, name and Discover. Learn. Create with AI tagline" width={1254} height={1254} className="block h-full w-full object-cover" />
       </Link>
