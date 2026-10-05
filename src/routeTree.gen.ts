@@ -16,6 +16,7 @@ import { Route as CareerRouteImport } from './routes/career'
 import { Route as CodingRouteImport } from './routes/coding'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as QuestsRouteImport } from './routes/quests'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
@@ -56,6 +57,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JourneyRoute = JourneyRouteImport.update({
+  id: '/journey',
+  path: '/journey',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/coding': typeof CodingRoute
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/journey': typeof JourneyRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/quests': typeof QuestsRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/coding': typeof CodingRoute
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/journey': typeof JourneyRoute
   '/quests': typeof QuestsRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects': typeof ProjectsIndexRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/coding': typeof CodingRoute
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/journey': typeof JourneyRoute
   '/projects': typeof ProjectsRouteWithChildren
   '/quests': typeof QuestsRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/coding'
     | '/community'
     | '/dashboard'
+    | '/journey'
     | '/projects'
     | '/quests'
     | '/projects/$slug'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/coding'
     | '/community'
     | '/dashboard'
+    | '/journey'
     | '/quests'
     | '/projects/$slug'
     | '/projects'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/coding'
     | '/community'
     | '/dashboard'
+    | '/journey'
     | '/projects'
     | '/quests'
     | '/projects/$slug'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   CodingRoute: typeof CodingRoute
   CommunityRoute: typeof CommunityRoute
   DashboardRoute: typeof DashboardRoute
+  JourneyRoute: typeof JourneyRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
   QuestsRoute: typeof QuestsRoute
 }
@@ -220,6 +233,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journey': {
+      id: '/journey'
+      path: '/journey'
+      fullPath: '/journey'
+      preLoaderRoute: typeof JourneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -273,6 +293,7 @@ const rootRouteChildren: RootRouteChildren = {
   CodingRoute: CodingRoute,
   CommunityRoute: CommunityRoute,
   DashboardRoute: DashboardRoute,
+  JourneyRoute: JourneyRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
   QuestsRoute: QuestsRoute,
 }
