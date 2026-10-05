@@ -7,7 +7,7 @@ import { StarterPicker } from "@/components/StarterPicker";
 import { QuizCard } from "@/components/QuizCard";
 import { aiTools, badges, platforms, projects, quests, showcase } from "@/data/content";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/journey")({
   head: () => ({
     meta: [
       { title: "CodeQuest — Your Adventure Into AI, Coding & the Future" },
