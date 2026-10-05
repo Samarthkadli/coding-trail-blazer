@@ -137,7 +137,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
   const isIntro = useRouterState({ select: (state) => state.location.pathname === "/" });
+
+  useEffect(() => {
+    const navigation = window.performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    if (navigation?.type === "reload" && window.location.pathname !== "/") {
+      void router.navigate({ to: "/", replace: true });
+    }
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>

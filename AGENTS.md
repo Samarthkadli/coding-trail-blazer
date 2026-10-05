@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the AIVORA intro at `/` and the existing CodeQuest adventure homepage at `/journey`; this lets the logo open the original experience without discarding its content.
+- On a browser refresh from any inner page, return to the AIVORA intro with a client-side replace navigation; this makes the logo slide the starting screen without breaking direct links or in-app navigation.
