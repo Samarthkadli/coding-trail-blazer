@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdventureRouteImport } from './routes/adventure'
 import { Route as AiToolsRouteImport } from './routes/ai-tools'
 import { Route as CareerRouteImport } from './routes/career'
@@ -21,6 +22,11 @@ import { Route as QuestsRouteImport } from './routes/quests'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdventureRoute = AdventureRouteImport.update({
   id: '/adventure',
   path: '/adventure',
@@ -78,6 +84,7 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/adventure': typeof AdventureRoute
   '/ai-tools': typeof AiToolsRoute
   '/career': typeof CareerRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/adventure': typeof AdventureRoute
   '/ai-tools': typeof AiToolsRoute
   '/career': typeof CareerRoute
@@ -104,6 +112,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/adventure': typeof AdventureRoute
   '/ai-tools': typeof AiToolsRoute
   '/career': typeof CareerRoute
@@ -119,6 +128,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/adventure'
     | '/ai-tools'
     | '/career'
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/adventure'
     | '/ai-tools'
     | '/career'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/projects'
   id:
     | '__root__'
+    | '/'
     | '/adventure'
     | '/ai-tools'
     | '/career'
@@ -158,6 +170,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AdventureRoute: typeof AdventureRoute
   AiToolsRoute: typeof AiToolsRoute
   CareerRoute: typeof CareerRoute
@@ -171,6 +184,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/adventure': {
       id: '/adventure'
       path: '/adventure'
@@ -266,6 +286,7 @@ const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AdventureRoute: AdventureRoute,
   AiToolsRoute: AiToolsRoute,
   CareerRoute: CareerRoute,
