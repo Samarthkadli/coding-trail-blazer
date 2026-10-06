@@ -21,10 +21,20 @@ function Intro() {
       <h1 className="sr-only">AIVORA — Discover. Learn. Create with AI.</h1>
       <Link
         to="/journey"
-        aria-label="Open Your Tech Adventure Starts Here"
-        className="aivora-artwork block aspect-square w-[min(100%,85dvh,850px)] overflow-hidden outline-none transition-transform duration-300 hover:scale-[1.015] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-intro-foreground active:scale-[0.99]"
+        aria-label="AIVORA — open Your Tech Adventure Starts Here"
+        aria-describedby="aivora-intro-hint"
+        className="aivora-artwork group block aspect-square w-[min(100%,85dvh,850px)] overflow-hidden rounded-full outline-none transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] focus-visible:ring-4 focus-visible:ring-intro-foreground/80 focus-visible:ring-offset-4 focus-visible:ring-offset-intro-background"
       >
-        <img src={aivoraReference.url} alt="AIVORA orbital A logo, name and Discover. Learn. Create with AI tagline" width={1254} height={1254} className="block h-full w-full object-cover" />
+        <img
+          src={aivoraReference.url}
+          alt="AIVORA orbital A logo, name and Discover. Learn. Create with AI tagline"
+          width={1254}
+          height={1254}
+          className="block h-full w-full object-cover"
+        />
+        <span id="aivora-intro-hint" className="sr-only">
+          Activating this artwork opens the CodeQuest adventure homepage.
+        </span>
       </Link>
     </section>
   );
