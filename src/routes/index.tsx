@@ -23,7 +23,7 @@ function Intro() {
         to="/journey"
         aria-label="AIVORA — open Your Tech Adventure Starts Here"
         aria-describedby="aivora-intro-hint"
-        className="aivora-artwork group block aspect-square w-[min(100%,85dvh,850px)] overflow-hidden outline-none transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] focus-visible:ring-4 focus-visible:ring-intro-foreground/80 focus-visible:ring-offset-4 focus-visible:ring-offset-intro-background"
+        className="aivora-artwork group block aspect-square w-[min(100%,85dvh,850px)] overflow-hidden outline-none transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] focus-visible:outline-4 focus-visible:outline-offset-6 focus-visible:outline-intro-foreground/90"
       >
         <img
           src={aivoraReference.url}
