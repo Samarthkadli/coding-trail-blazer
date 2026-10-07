@@ -333,13 +333,7 @@
   background: var(--intro-background);
 }
 .aivora-artwork {
-  box-shadow: 0 0 70px color-mix(in oklab, var(--intro-violet) 12%, transparent);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
-}
-.aivora-artwork:hover {
-  box-shadow:
-    0 0 100px color-mix(in oklab, var(--intro-cyan) 24%, transparent),
-    0 0 34px color-mix(in oklab, var(--intro-violet) 22%, transparent);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
