@@ -14,13 +14,108 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      career_completions: {
+        Row: {
+          activity_id: string
+          completed_at: string
+          track_id: string
+          user_id: string
+          xp: number
+        }
+        Insert: {
+          activity_id: string
+          completed_at?: string
+          track_id: string
+          user_id: string
+          xp?: number
+        }
+        Update: {
+          activity_id?: string
+          completed_at?: string
+          track_id?: string
+          user_id?: string
+          xp?: number
+        }
+        Relationships: []
+      }
+      career_portfolios: {
+        Row: {
+          display_name: string
+          headline: string
+          id: string
+          projects: Json
+          published: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          display_name?: string
+          headline?: string
+          id?: string
+          projects?: Json
+          published?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          display_name?: string
+          headline?: string
+          id?: string
+          projects?: Json
+          published?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      career_workspaces: {
+        Row: {
+          bookmarked: boolean
+          notes: string
+          track_id: string
+          updated_at: string
+          user_id: string
+          work: Json
+        }
+        Insert: {
+          bookmarked?: boolean
+          notes?: string
+          track_id: string
+          updated_at?: string
+          user_id: string
+          work?: Json
+        }
+        Update: {
+          bookmarked?: boolean
+          notes?: string
+          track_id?: string
+          updated_at?: string
+          user_id?: string
+          work?: Json
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      career_leaderboard: {
+        Args: never
+        Returns: {
+          learner: string
+          xp: number
+        }[]
+      }
+      record_career_activity: {
+        Args: {
+          p_activity: string
+          p_answers: number[]
+          p_tasks: boolean[]
+          p_track: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
